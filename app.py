@@ -61,6 +61,54 @@ st.markdown("""
         gap: 15px;
         margin: 10px 0;
     }
+
+    /* Новогодние карточки для вкладки Да/Нет */
+    .christmas-card {
+        background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        padding: 20px;
+        border-radius: 16px;
+        border: 2px solid #4caf50;
+        margin-bottom: 20px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+    }
+    
+    .christmas-card.no {
+        background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+        border: 2px solid #f44336;
+        box-shadow: 0 8px 25px rgba(244, 67, 54, 0.15);
+    }
+    
+    .card-snowflake {
+        position: absolute;
+        color: rgba(255,255,255,0.3);
+        font-size: 1rem;
+        animation: cardSnowFloat 4s ease-in-out infinite;
+    }
+    
+    @keyframes cardSnowFloat {
+        0%, 100% { 
+            transform: translateY(0px) rotate(0deg) scale(1); 
+            opacity: 0.3; 
+        }
+        50% { 
+            transform: translateY(-10px) rotate(180deg) scale(1.2); 
+            opacity: 0.6; 
+        }
+    }
+    
+    .card-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+        color: #1a6e1a;
+    }
+    
+    .christmas-card.no .card-header {
+        color: #c62828;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -261,11 +309,11 @@ with tab3:
     st.markdown("### ✅ Интерпретации 'ДА'")
     
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
-                padding: 0.5px; 
-                border-radius: 12px; 
-                border: 2px solid #4caf50;
-                margin-bottom: 20px;">
+    <div class="christmas-card">
+        <div class="card-snowflake" style="top: 10px; left: 10px; animation-delay: 0s;">❄</div>
+        <div class="card-snowflake" style="top: 15px; right: 15px; animation-delay: 1s;">❅</div>
+        <div class="card-snowflake" style="bottom: 20px; left: 20px; animation-delay: 2s;">❆</div>
+        <div class="card-header">🎄 Положительные ответы 🎄</div>
     """, unsafe_allow_html=True)
     
     yes_phrases = [
@@ -283,12 +331,12 @@ with tab3:
 
     st.markdown("### ❌ Интерпретации 'НЕТ'")
     
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
-                padding: 0.5px; 
-                border-radius: 12px; 
-                border: 2px solid #f44336;
-                margin-bottom: 20px;">
+st.markdown("""
+    <div class="christmas-card no">
+        <div class="card-snowflake" style="top: 10px; left: 15px; animation-delay: 0.5s;">❄</div>
+        <div class="card-snowflake" style="top: 25px; right: 10px; animation-delay: 1.5s;">❅</div>
+        <div class="card-snowflake" style="bottom: 15px; right: 25px; animation-delay: 2.5s;">❆</div>
+        <div class="card-header">🎅 Отрицательные ответы 🎅</div>
     """, unsafe_allow_html=True)
     
     no_phrases = [
