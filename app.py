@@ -3,8 +3,45 @@ from utils import load_all_excels, semantic_search, keyword_search, get_model
 import torch  # для работы с тензорами
 
 st.set_page_config(page_title="Проверка фраз ФЛ", layout="centered")
-st.title("🤖 Проверка фраз")
-# Анимация падающего снега
+
+# Новогодняя тема
+st.markdown("""
+<style>
+    .main-header {
+        font-size: 2.5rem;
+        color: #1a6e1a;
+        text-align: center;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    .snowflake {
+        color: #1a6e1a;
+        font-size: 1.5rem;
+        margin: 0 5px;
+    }
+    .christmas-border {
+        border: 2px solid #1a6e1a !important;
+        border-radius: 15px;
+        padding: 15px;
+        background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# Заголовок с снежинками (ЕДИНСТВЕННЫЙ заголовок)
+st.markdown("""
+<div style="text-align: center;">
+    <span class="snowflake">❄️</span>
+    <span class="snowflake">🎄</span>
+    <span class="snowflake">⭐</span>
+    <h1 class="main-header">🤖 Проверка фраз ФЛ</h1>
+    <span class="snowflake">⭐</span>
+    <span class="snowflake">🎄</span>
+    <span class="snowflake">❄️</span>
+</div>
+""", unsafe_allow_html=True)
+
+# Анимация падающего снега (после заголовка)
 st.components.v1.html("""
 <div id="snow"></div>
 <style>
@@ -13,7 +50,7 @@ st.components.v1.html("""
     to {transform: translateY(100vh) rotate(360deg);}
 }
 
-.snowflake {
+.snowflake-animated {
     position: fixed;
     top: -10px;
     color: #87CEEB;
@@ -40,7 +77,7 @@ function createSnow() {
     
     for (let i = 0; i < 50; i++) {
         const snowflake = document.createElement('div');
-        snowflake.className = 'snowflake';
+        snowflake.className = 'snowflake-animated';
         snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
         
         // Случайные параметры
@@ -62,42 +99,6 @@ createSnow();
 </script>
 """, height=0)
 
-# Новогодняя тема
-st.markdown("""
-<style>
-    .main-header {
-        font-size: 2.5rem;
-        color: #1a6e1a;
-        text-align: center;
-        margin-bottom: 2rem;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    }
-    .snowflake {
-        color: #1a6e1a;
-        font-size: 1.5rem;
-        margin: 0 5px;
-    }
-    .christmas-border {
-        border: 2px solid #1a6e1a !important;
-        border-radius: 15px;
-        padding: 15px;
-        background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# Заголовок с снежинками
-st.markdown("""
-<div style="text-align: center;">
-    <span class="snowflake">❄️</span>
-    <span class="snowflake">🎄</span>
-    <span class="snowflake">⭐</span>
-    <h1 class="main-header">🤖 Проверка фраз ФЛ</h1>
-    <span class="snowflake">⭐</span>
-    <span class="snowflake">🎄</span>
-    <span class="snowflake">❄️</span>
-</div>
-""", unsafe_allow_html=True)
 @st.cache_data
 def get_data():
     df = load_all_excels()
@@ -204,7 +205,7 @@ with tab2:
         "Local_Friends",
         "Local_Next_Payment",
         "Local_Order_Cash",
-        "Local_Other_Cashback",  # Добавлена запятая
+        "Local_Other_Cashback",
         "Local_RemittanceStatus",
         "Подожди (Wait)",
         "Local_X5",
