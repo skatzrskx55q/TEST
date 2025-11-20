@@ -347,7 +347,6 @@ st.markdown(
     <div style="text-align: center; color: #1a6e1a; margin-top: 30px;">
         <p>🎄 <strong>С Наступающим Новым Годом!</strong> 🎄</p>
         <div style="font-size: 0.9rem; color: #666;">
-            Пусть ваш код всегда будет чистым, а поиск — точным!
         </div>
     </div>
     """,
