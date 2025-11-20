@@ -210,7 +210,7 @@ with tab2:
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); 
-                padding: 5px; 
+                padding: 1px; 
                 border-radius: 12px; 
                 border: 2px solid #ff6b6b;
                 margin-bottom: 20px;">
@@ -262,7 +262,7 @@ with tab3:
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
-                padding: 5px; 
+                padding: 2px; 
                 border-radius: 12px; 
                 border: 2px solid #4caf50;
                 margin-bottom: 20px;">
@@ -285,7 +285,7 @@ with tab3:
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
-                padding: 5px; 
+                padding: 3px; 
                 border-radius: 12px; 
                 border: 2px solid #f44336;
                 margin-bottom: 20px;">
