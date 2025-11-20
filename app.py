@@ -285,7 +285,7 @@ with tab3:
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
-                padding: 15px; 
+                padding: 10px; 
                 border-radius: 12px; 
                 border: 2px solid #f44336;
                 margin-bottom: 20px;">
