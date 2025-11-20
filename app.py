@@ -4,7 +4,7 @@ import torch  # для работы с тензорами
 
 st.set_page_config(page_title="Проверка фраз ФЛ", layout="centered")
 
-# Надежный новогодний дизайн со статичными снежинками
+# Сначала стили
 st.markdown("""
 <style>
     .main-header {
@@ -62,12 +62,21 @@ st.markdown("""
         margin: 10px 0;
     }
 </style>
+""", unsafe_allow_html=True)
 
+# Затем баннер
+st.markdown("""
 <div class="christmas-banner">
     🎄 С Наступающим Новым Годом! 🎄
 </div>
+""", unsafe_allow_html=True)
 
-<div style="text-align: center; margin-bottom: 2rem;">
+# Затем заголовок со снежинками - разбиваем на части
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col2:
+    # Верхний ряд снежинок
+    st.markdown("""
     <div class="snow-row">
         <span class="snowflake">❄</span>
         <span class="snowflake">❅</span>
@@ -76,9 +85,13 @@ st.markdown("""
         <span class="snowflake">❄</span>
         <span class="snowflake">❅</span>
     </div>
+    """, unsafe_allow_html=True)
     
-    <h1 class="main-header">🤖 Проверка фраз ФЛ</h1>
+    # Главный заголовок
+    st.markdown('<h1 class="main-header">🤖 Проверка фраз ФЛ</h1>', unsafe_allow_html=True)
     
+    # Нижний ряд иконок
+    st.markdown("""
     <div class="snow-row">
         <span class="snowflake">⭐</span>
         <span class="snowflake">🎄</span>
@@ -87,8 +100,7 @@ st.markdown("""
         <span class="snowflake">⭐</span>
         <span class="snowflake">🎄</span>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 @st.cache_data
 def get_data():
@@ -137,7 +149,6 @@ with tab1:
                 mask = df['topics'].apply(lambda topics: any(t in selected_topics for t in topics))
                 search_df = df[mask].copy()
 
-                # Пересчитываем эмбеддинги для фильтрованного DF (надежнее)
                 if not search_df.empty:
                     model = get_model()
                     search_df.attrs['phrase_embs'] = model.encode(search_df['phrase_proc'].tolist(), convert_to_tensor=True)
@@ -152,7 +163,6 @@ with tab1:
                     st.markdown("### 🎯 Результаты умного поиска:")
                     for score, phrase_full, topics, comment in results:
                         with st.container():
-                            # Разные стили в зависимости от релевантности
                             if score > 0.8:
                                 border_color = "#ffd700"
                                 bg_color = "linear-gradient(135deg, #fff9e6 0%, #ffefbf 100%)"
