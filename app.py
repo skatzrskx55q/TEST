@@ -68,7 +68,6 @@ st.markdown("""
 </div>
 
 <div style="text-align: center; margin-bottom: 2rem;">
-    <!-- Верхний ряд снежинок -->
     <div class="snow-row">
         <span class="snowflake">❄</span>
         <span class="snowflake">❅</span>
@@ -78,10 +77,8 @@ st.markdown("""
         <span class="snowflake">❅</span>
     </div>
     
-    <!-- Главный заголовок -->
     <h1 class="main-header">🤖 Проверка фраз ФЛ</h1>
     
-    <!-- Нижний ряд новогодних иконок -->
     <div class="snow-row">
         <span class="snowflake">⭐</span>
         <span class="snowflake">🎄</span>
@@ -145,7 +142,7 @@ with tab1:
                     model = get_model()
                     search_df.attrs['phrase_embs'] = model.encode(search_df['phrase_proc'].tolist(), convert_to_tensor=True)
                 else:
-                    search_df.attrs['phrase_embs'] = torch.empty((0, 384))  # Пустой тензор (пример dim=384 для модели)
+                    search_df.attrs['phrase_embs'] = torch.empty((0, 384))
 
             if search_df.empty:
                 st.warning("❄️ Нет данных для поиска по выбранным тематикам.")
@@ -200,12 +197,10 @@ with tab1:
         except Exception as e:
             st.error(f"🎄 Ошибка при обработке запроса: {e}")
 
-
 # ============= TAB 2: НЕ ИСПОЛЬЗУЕМ =============
 with tab2:
     st.markdown("### 🚫 Локалы, которые **не используем**")
     
-    # Новогодний стиль для списка
     st.markdown("""
     <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); 
                 padding: 20px; 
@@ -215,29 +210,19 @@ with tab2:
     """, unsafe_allow_html=True)
     
     unused_topics = [
-        "Local_Balance_Transfer",
-        "Local_Friends",
-        "Local_Next_Payment",
-        "Local_Order_Cash",
-        "Local_Other_Cashback",
-        "Local_RemittanceStatus",
-        "Подожди (Wait)",
-        "Local_X5",
-        "PassportChangeFirst",
-        "PassportChangeSecond",
-        "Меньше (Local_Less)",
-        "Больше (Local_More)",
+        "Local_Balance_Transfer", "Local_Friends", "Local_Next_Payment", 
+        "Local_Order_Cash", "Local_Other_Cashback", "Local_RemittanceStatus",
+        "Подожди (Wait)", "Local_X5", "PassportChangeFirst", "PassportChangeSecond",
+        "Меньше (Local_Less)", "Больше (Local_More)", 
         "Рефинансирование под залог недвижимости (Local_Secured_Refinancing)",
-        "Действующий займ (Local_Current_MFO_2)",
+        "Действующий займ (Local_Current_MFO_2)", 
         "General Мои кредитные предложения (General_My_loan_offers)",
         "Настроить/Изменить/Восстановить (Local_Setup_Secret_Code)",
         "Как сделать устройство доверенным (Local_Trusted_Device)",
         "Что такое доверенное устройство (Local_About_Trusted_Device)",
         "Что такое секретный код (Local_About_Secret_Code)",
-        "займы более 100 тыс (Local_MoreNumbers)",
-        "займы меньше 100 тыс (Local_LessNumbers)",
-        "Новая карта (NewCard)",
-        "Проблема с начислением кэшбэка (Local_Problem_CashBack)"
+        "займы более 100 тыс (Local_MoreNumbers)", "займы меньше 100 тыс (Local_LessNumbers)",
+        "Новая карта (NewCard)", "Проблема с начислением кэшбэка (Local_Problem_CashBack)"
     ]
     
     for topic in unused_topics:
@@ -258,7 +243,7 @@ def render_phrases_grid(phrases, cols=3, color="#e0f7fa", icon="🎯"):
                                 display:inline-block;
                                 margin:4px;
                                 font-size:14px;
-                                border: 1px solid {color.replace('0.5', '0.8')};
+                                border: 1px solid {color};
                                 text-align: center;">
                         {icon} {phrase}
                 </div>""",
@@ -267,6 +252,14 @@ def render_phrases_grid(phrases, cols=3, color="#e0f7fa", icon="🎯"):
 
 with tab3:
     st.markdown("### ✅ Интерпретации 'ДА'")
+    
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
+                padding: 15px; 
+                border-radius: 12px; 
+                border: 2px solid #4caf50;
+                margin-bottom: 20px;">
+    """, unsafe_allow_html=True)
     
     yes_phrases = [
         "Подсказать", "Помню", "Хорошо", "Да", "Ага", "Угу",
@@ -282,6 +275,14 @@ with tab3:
     st.markdown("---")
 
     st.markdown("### ❌ Интерпретации 'НЕТ'")
+    
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
+                padding: 15px; 
+                border-radius: 12px; 
+                border: 2px solid #f44336;
+                margin-bottom: 20px;">
+    """, unsafe_allow_html=True)
     
     no_phrases = [
         "Не надо", "Не хочу", "Не готов", "Не помню", "Не пробовала", "Не интересно"
