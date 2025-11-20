@@ -210,7 +210,7 @@ with tab2:
     
     st.markdown("""
     <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); 
-                padding: 20px; 
+                padding: 5px; 
                 border-radius: 12px; 
                 border: 2px solid #ff6b6b;
                 margin-bottom: 20px;">
