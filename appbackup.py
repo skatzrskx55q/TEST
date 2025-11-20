@@ -345,7 +345,7 @@ st.markdown("---")
 st.markdown(
     """
     <div style="text-align: center; color: #1a6e1a; margin-top: 30px;">
-        <p>🎄 <strong>С Наступающим Новым Годом!</strong> 🎄</p>
+        <p>🎄 <strong>С Наступающим Новым Годом, Коллеги❤️</strong> 🎄</p>
         <div style="font-size: 0.9rem; color: #666;">
         </div>
     </div>
