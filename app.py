@@ -1,7 +1,6 @@
 import streamlit as st
 from utils import load_all_excels, semantic_search, keyword_search, get_model
 import torch  # для работы с тензорами
-import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Проверка фраз ФЛ", layout="centered")
 
@@ -110,85 +109,59 @@ st.markdown("""
     .christmas-card.no .card-header {
         color: #c62828;
     }
+    
+    /* CSS снегопад */
+    .snowfall {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .snow {
+        position: absolute;
+        top: -50px;
+        color: #87CEEB;
+        animation: snowFall linear infinite;
+        opacity: 0.7;
+    }
+    
+    @keyframes snowFall {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 0.7;
+        }
+        100% {
+            transform: translateY(100vh) translateX(20px) rotate(360deg);
+            opacity: 0.3;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# Анимированный снегопад
-components.html("""
-<div class="snowfall" id="snowfall"></div>
-
-<script>
-function createSnowfall() {
-    const container = document.getElementById('snowfall');
-    const snowflakes = ['❄', '•', '❅', '❆', '*'];
-    const count = 40;
-    
-    container.innerHTML = '';
-    
-    for (let i = 0; i < count; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.className = 'snowflake-fall';
-        snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-        
-        const left = Math.random() * 100;
-        const size = Math.random() * 1.2 + 0.8;
-        const duration = Math.random() * 15 + 10;
-        const delay = Math.random() * 5;
-        const opacity = Math.random() * 0.5 + 0.3;
-        
-        snowflake.style.left = left + 'vw';
-        snowflake.style.fontSize = size + 'em';
-        snowflake.style.animationDuration = duration + 's';
-        snowflake.style.animationDelay = delay + 's';
-        snowflake.style.opacity = opacity;
-        
-        container.appendChild(snowflake);
-    }
-}
-
-// Запускаем после загрузки
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createSnowfall);
-} else {
-    createSnowfall();
-}
-
-// Обновляем при ресайзе
-window.addEventListener('resize', createSnowfall);
-</script>
-
-<style>
-.snowfall {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.snowflake-fall {
-    position: absolute;
-    top: -50px;
-    color: #87CEEB;
-    font-size: 1em;
-    animation: snowfall linear infinite;
-    opacity: 0.7;
-}
-
-@keyframes snowfall {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(100vh) translateX(20px) rotate(360deg);
-        opacity: 0.3;
-    }
-}
-</style>
-""", height=0)
+# CSS снегопад
+st.markdown("""
+<div class="snowfall">
+    <div class="snow" style="left: 5%; animation-duration: 15s; animation-delay: 0s; font-size: 1.2em;">❄</div>
+    <div class="snow" style="left: 15%; animation-duration: 12s; animation-delay: 1s; font-size: 0.8em;">•</div>
+    <div class="snow" style="left: 25%; animation-duration: 18s; animation-delay: 2s; font-size: 1.1em;">❅</div>
+    <div class="snow" style="left: 35%; animation-duration: 14s; animation-delay: 0.5s; font-size: 0.9em;">❆</div>
+    <div class="snow" style="left: 45%; animation-duration: 16s; animation-delay: 3s; font-size: 1em;">❄</div>
+    <div class="snow" style="left: 55%; animation-duration: 13s; animation-delay: 1.5s; font-size: 0.7em;">•</div>
+    <div class="snow" style="left: 65%; animation-duration: 17s; animation-delay: 2.5s; font-size: 1.3em;">❅</div>
+    <div class="snow" style="left: 75%; animation-duration: 11s; animation-delay: 0.8s; font-size: 0.9em;">❆</div>
+    <div class="snow" style="left: 85%; animation-duration: 19s; animation-delay: 4s; font-size: 1.1em;">❄</div>
+    <div class="snow" style="left: 95%; animation-duration: 15s; animation-delay: 1.2s; font-size: 0.8em;">•</div>
+    <div class="snow" style="left: 10%; animation-duration: 20s; animation-delay: 5s; font-size: 1em;">❅</div>
+    <div class="snow" style="left: 30%; animation-duration: 16s; animation-delay: 3.5s; font-size: 0.9em;">❆</div>
+    <div class="snow" style="left: 50%; animation-duration: 14s; animation-delay: 2.2s; font-size: 1.2em;">❄</div>
+    <div class="snow" style="left: 70%; animation-duration: 18s; animation-delay: 4.5s; font-size: 0.8em;">•</div>
+    <div class="snow" style="left: 90%; animation-duration: 13s; animation-delay: 1.8s; font-size: 1.1em;">❅</div>
+</div>
+""", unsafe_allow_html=True)
 
 # Затем баннер
 st.markdown("""
