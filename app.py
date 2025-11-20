@@ -331,13 +331,14 @@ with tab3:
 
     st.markdown("### ❌ Интерпретации 'НЕТ'")
     
-st.markdown("""
+    st.markdown("""
     <div class="christmas-card no">
         <div class="card-snowflake" style="top: 10px; left: 15px; animation-delay: 0.5s;">❄</div>
         <div class="card-snowflake" style="top: 25px; right: 10px; animation-delay: 1.5s;">❅</div>
         <div class="card-snowflake" style="bottom: 15px; right: 25px; animation-delay: 2.5s;">❆</div>
         <div class="card-header">🎅 Отрицательные ответы 🎅</div>
     """, unsafe_allow_html=True)
+    
     no_phrases = [
         "Не надо", "Не хочу", "Не готов", "Не помню", "Не пробовала", "Не интересно"
     ]
