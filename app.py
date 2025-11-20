@@ -110,41 +110,26 @@ st.markdown("""
         color: #c62828;
     }
     
-    /* Статичный снежный фон */
-    .snow-background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-        opacity: 0.15;
-        background-image: 
-            url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 20L52 25L57 25L53 28L55 33L50 30L45 33L47 28L43 25L48 25Z' fill='%2387CEEB'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='2' fill='%2387CEEB'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 25L62 30L67 30L63 33L65 38L60 35L55 38L57 33L53 30L58 30Z' fill='%2387CEEB'/%3E%3C/svg%3E");
-        background-repeat: repeat;
-        background-size: 100px 100px, 80px 80px, 120px 120px;
-    }
-    
-    /* Чтобы контент был читаемым */
-    .main .block-container {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        padding: 20px;
-        margin: 10px;
+    /* Простые статичные снежинки в контенте */
+    .static-snowflakes {
+        text-align: center;
+        margin: 10px 0;
+        opacity: 0.4;
     }
 </style>
 """, unsafe_allow_html=True)
-
-# Статичный снежный фон
-st.markdown('<div class="snow-background"></div>', unsafe_allow_html=True)
 
 # Затем баннер
 st.markdown("""
 <div class="christmas-banner">
     🎄 С Наступающим Новым Годом! 🎄
+</div>
+""", unsafe_allow_html=True)
+
+# Статичные снежинки перед заголовком
+st.markdown("""
+<div class="static-snowflakes">
+    ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ •
 </div>
 """, unsafe_allow_html=True)
 
@@ -178,6 +163,13 @@ with col2:
         <span class="snowflake">🎄</span>
     </div>
     """, unsafe_allow_html=True)
+
+# Статичные снежинки после заголовка
+st.markdown("""
+<div class="static-snowflakes">
+    • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄
+</div>
+""", unsafe_allow_html=True)
 
 @st.cache_data
 def get_data():
