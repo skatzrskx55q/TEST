@@ -259,7 +259,7 @@ with tab2:
         <div class="card-snowflake" style="top: 10px; left: 10px; animation-delay: 0s;">❄</div>
         <div class="card-snowflake" style="top: 25px; right: 20px; animation-delay: 1.2s;">❅</div>
         <div class="card-snowflake" style="bottom: 15px; left: 25px; animation-delay: 2.4s;">❆</div>
-        <div class="card-header">🚫 Локалы, которые не используем</div>
+        <div class="card-header">🎄🚫 Локалы, которые не используем</div>
     """, unsafe_allow_html=True)
     
     unused_topics = [
