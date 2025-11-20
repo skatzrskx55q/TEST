@@ -1,6 +1,7 @@
 import streamlit as st
 from utils import load_all_excels, semantic_search, keyword_search, get_model
 import torch  # для работы с тензорами
+import streamlit.components.v1 as components
 
 st.set_page_config(page_title="Проверка фраз ФЛ", layout="centered")
 
@@ -109,48 +110,11 @@ st.markdown("""
     .christmas-card.no .card-header {
         color: #c62828;
     }
-    
-    /* Анимированный снегопад на всей странице */
-    .snowfall {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-    
-    .snowflake-fall {
-        position: absolute;
-        top: -50px;
-        color: #87CEEB;
-        font-size: 1em;
-        animation: snowfall linear infinite;
-        opacity: 0.7;
-    }
-    
-    @keyframes snowfall {
-        0% {
-            transform: translateY(0) translateX(0) rotate(0deg);
-            opacity: 0.7;
-        }
-        100% {
-            transform: translateY(100vh) translateX(20px) rotate(360deg);
-            opacity: 0.3;
-        }
-    }
-    
-    /* Чтобы контент был поверх снегопада */
-    .main .block-container {
-        position: relative;
-        z-index: 1;
-    }
 </style>
 """, unsafe_allow_html=True)
 
 # Анимированный снегопад
-st.markdown("""
+components.html("""
 <div class="snowfall" id="snowfall"></div>
 
 <script>
@@ -182,10 +146,49 @@ function createSnowfall() {
     }
 }
 
-createSnowfall();
+// Запускаем после загрузки
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createSnowfall);
+} else {
+    createSnowfall();
+}
+
+// Обновляем при ресайзе
 window.addEventListener('resize', createSnowfall);
 </script>
-""", unsafe_allow_html=True)
+
+<style>
+.snowfall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.snowflake-fall {
+    position: absolute;
+    top: -50px;
+    color: #87CEEB;
+    font-size: 1em;
+    animation: snowfall linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh) translateX(20px) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+</style>
+""", height=0)
 
 # Затем баннер
 st.markdown("""
@@ -193,21 +196,7 @@ st.markdown("""
     🎄 С Наступающим Новым Годом! 🎄
 </div>
 """, unsafe_allow_html=True)
-# Просто добавь этот блок после баннера:
-st.markdown("""
-<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; opacity: 0.3;">
-    <div style="position: absolute; top: 10%; left: 5%; font-size: 1.2em;">❄</div>
-    <div style="position: absolute; top: 20%; left: 15%; font-size: 0.8em;">•</div>
-    <div style="position: absolute; top: 30%; left: 25%; font-size: 1.1em;">❅</div>
-    <div style="position: absolute; top: 40%; left: 35%; font-size: 0.9em;">❆</div>
-    <div style="position: absolute; top: 50%; left: 45%; font-size: 1em;">❄</div>
-    <div style="position: absolute; top: 60%; left: 55%; font-size: 0.7em;">•</div>
-    <div style="position: absolute; top: 70%; left: 65%; font-size: 1.3em;">❅</div>
-    <div style="position: absolute; top: 80%; left: 75%; font-size: 0.9em;">❆</div>
-    <div style="position: absolute; top: 90%; left: 85%; font-size: 1.1em;">❄</div>
-    <div style="position: absolute; top: 15%; left: 95%; font-size: 0.8em;">•</div>
-</div>
-""", unsafe_allow_html=True)
+
 # Затем заголовок со снежинками - разбиваем на части
 col1, col2, col3 = st.columns([1, 2, 1])
 
@@ -437,9 +426,8 @@ st.markdown("---")
 st.markdown(
     """
     <div style="text-align: center; color: #1a6e1a; margin-top: 30px;">
-        <p>🎄 <strong>С Наступающим Новым Годом!</strong> 🎄</p>
+        <p>🎄 <strong>С Наступающим Новым Годом, Коллеги❤️</strong> 🎄</p>
         <div style="font-size: 0.9rem; color: #666;">
-            Пусть ваш код всегда будет чистым, а поиск — точным!
         </div>
     </div>
     """,
