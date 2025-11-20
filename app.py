@@ -4,100 +4,94 @@ import torch  # для работы с тензорами
 
 st.set_page_config(page_title="Проверка фраз ФЛ", layout="centered")
 
-# Новогодняя тема
+# Надежный новогодний дизайн со статичными снежинками
 st.markdown("""
 <style>
     .main-header {
         font-size: 2.5rem;
         color: #1a6e1a;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
     .snowflake {
-        color: #1a6e1a;
+        color: #87CEEB;
         font-size: 1.5rem;
         margin: 0 5px;
+        animation: gentleFloat 3s ease-in-out infinite;
+        display: inline-block;
     }
-    .christmas-border {
-        border: 2px solid #1a6e1a !important;
-        border-radius: 15px;
-        padding: 15px;
-        background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%);
+    
+    @keyframes gentleFloat {
+        0%, 100% { 
+            transform: translateY(0px) rotate(0deg); 
+        }
+        50% { 
+            transform: translateY(-8px) rotate(180deg); 
+        }
+    }
+    
+    .snowflake:nth-child(2n) {
+        animation-delay: 0.5s;
+    }
+    .snowflake:nth-child(3n) {
+        animation-delay: 1s;
+    }
+    .snowflake:nth-child(4n) {
+        animation-delay: 1.5s;
+    }
+    
+    .christmas-banner {
+        background: linear-gradient(90deg, #1a6e1a, #4caf50, #1a6e1a);
+        padding: 12px;
+        border-radius: 12px;
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 8px rgba(26, 110, 26, 0.3);
+    }
+    
+    .snow-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 10px 0;
     }
 </style>
-""", unsafe_allow_html=True)
 
-# Заголовок с снежинками (ЕДИНСТВЕННЫЙ заголовок)
-st.markdown("""
-<div style="text-align: center;">
-    <span class="snowflake">❄️</span>
-    <span class="snowflake">🎄</span>
-    <span class="snowflake">⭐</span>
+<div class="christmas-banner">
+    🎄 С Наступающим Новым Годом! 🎄
+</div>
+
+<div style="text-align: center; margin-bottom: 2rem;">
+    <!-- Верхний ряд снежинок -->
+    <div class="snow-row">
+        <span class="snowflake">❄</span>
+        <span class="snowflake">❅</span>
+        <span class="snowflake">❆</span>
+        <span class="snowflake">•</span>
+        <span class="snowflake">❄</span>
+        <span class="snowflake">❅</span>
+    </div>
+    
+    <!-- Главный заголовок -->
     <h1 class="main-header">🤖 Проверка фраз ФЛ</h1>
-    <span class="snowflake">⭐</span>
-    <span class="snowflake">🎄</span>
-    <span class="snowflake">❄️</span>
+    
+    <!-- Нижний ряд новогодних иконок -->
+    <div class="snow-row">
+        <span class="snowflake">⭐</span>
+        <span class="snowflake">🎄</span>
+        <span class="snowflake">🎁</span>
+        <span class="snowflake">🕯️</span>
+        <span class="snowflake">⭐</span>
+        <span class="snowflake">🎄</span>
+    </div>
 </div>
 """, unsafe_allow_html=True)
-
-# Анимация падающего снега (после заголовка)
-st.components.v1.html("""
-<div id="snow"></div>
-<style>
-@keyframes fall {
-    from {transform: translateY(-100px) rotate(0deg);}
-    to {transform: translateY(100vh) rotate(360deg);}
-}
-
-.snowflake-animated {
-    position: fixed;
-    top: -10px;
-    color: #87CEEB;
-    font-size: 1em;
-    animation: fall linear infinite;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-#snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9998;
-}
-</style>
-<script>
-function createSnow() {
-    const snowContainer = document.getElementById('snow');
-    const snowflakes = ['❄', '•', '❅', '❆'];
-    
-    for (let i = 0; i < 50; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.className = 'snowflake-animated';
-        snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
-        
-        // Случайные параметры
-        const left = Math.random() * 100;
-        const size = Math.random() * 1.5 + 0.5;
-        const duration = Math.random() * 10 + 5;
-        const delay = Math.random() * 5;
-        
-        snowflake.style.left = left + 'vw';
-        snowflake.style.fontSize = size + 'em';
-        snowflake.style.animationDuration = duration + 's';
-        snowflake.style.animationDelay = delay + 's';
-        
-        snowContainer.appendChild(snowflake);
-    }
-}
-
-createSnow();
-</script>
-""", height=0)
 
 @st.cache_data
 def get_data():
@@ -111,8 +105,8 @@ df = get_data()
 # 🔘 Все уникальные тематики
 all_topics = sorted({topic for topics in df['topics'] for topic in topics})
 
-# --- Вкладки ---
-tab1, tab2, tab3 = st.tabs(["🔍 Поиск", "🚫 Не используем", "✅/❌ Да и Нет"])
+# --- Вкладки с новогодними иконками ---
+tab1, tab2, tab3 = st.tabs(["🎁 Поиск", "🎄 Не используем", "❄️ Да и Нет"])
 
 # ============= TAB 1: ПОИСК =============
 with tab1:
@@ -126,9 +120,9 @@ with tab1:
         for row in filtered_df.itertuples():
             with st.container():
                 st.markdown(
-                    f"""<div style="border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px; margin-bottom: 12px; background-color: #f9f9f9; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-                        <div style="font-size: 18px; font-weight: 600; color: #333;">📝 {row.phrase_full}</div>
-                        <div style="margin-top: 4px; font-size: 14px; color: #666;">🔖 Тематики: <strong>{', '.join(row.topics)}</strong></div>
+                    f"""<div style="border: 2px solid #1a6e1a; border-radius: 12px; padding: 16px; margin-bottom: 12px; background: linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%); box-shadow: 0 2px 6px rgba(26,110,26,0.1);">
+                        <div style="font-size: 18px; font-weight: 600; color: #1a472a;">🎁 {row.phrase_full}</div>
+                        <div style="margin-top: 4px; font-size: 14px; color: #2e7d32;">🔖 Тематики: <strong>{', '.join(row.topics)}</strong></div>
                     </div>""",
                     unsafe_allow_html=True
                 )
@@ -154,18 +148,28 @@ with tab1:
                     search_df.attrs['phrase_embs'] = torch.empty((0, 384))  # Пустой тензор (пример dim=384 для модели)
 
             if search_df.empty:
-                st.warning("Нет данных для поиска по выбранным тематикам.")
+                st.warning("❄️ Нет данных для поиска по выбранным тематикам.")
             else:
                 results = semantic_search(query, search_df)
                 if results:
-                    st.markdown("### 🔍 Результаты умного поиска:")
+                    st.markdown("### 🎯 Результаты умного поиска:")
                     for score, phrase_full, topics, comment in results:
                         with st.container():
+                            # Разные стили в зависимости от релевантности
+                            if score > 0.8:
+                                border_color = "#ffd700"
+                                bg_color = "linear-gradient(135deg, #fff9e6 0%, #ffefbf 100%)"
+                                icon = "⭐"
+                            else:
+                                border_color = "#1a6e1a"
+                                bg_color = "linear-gradient(135deg, #f8fff8 0%, #e8f5e8 100%)"
+                                icon = "🎁"
+                            
                             st.markdown(
-                                f"""<div style="border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px; margin-bottom: 12px; background-color: #f9f9f9; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-                                    <div style="font-size: 18px; font-weight: 600; color: #333;">🧠 {phrase_full}</div>
-                                    <div style="margin-top: 4px; font-size: 14px; color: #666;">🔖 Тематики: <strong>{', '.join(topics)}</strong></div>
-                                    <div style="margin-top: 2px; font-size: 13px; color: #999;">🎯 Релевантность: {score:.2f}</div>
+                                f"""<div style="border: 2px solid {border_color}; border-radius: 12px; padding: 16px; margin-bottom: 12px; background: {bg_color}; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 18px; font-weight: 600; color: #1a472a;">{icon} {phrase_full}</div>
+                                    <div style="margin-top: 4px; font-size: 14px; color: #2e7d32;">🔖 Тематики: <strong>{', '.join(topics)}</strong></div>
+                                    <div style="margin-top: 2px; font-size: 13px; color: #388e3c;">🎯 Релевантность: {score:.2f}</div>
                                 </div>""",
                                 unsafe_allow_html=True
                             )
@@ -173,7 +177,7 @@ with tab1:
                                 with st.expander("💬 Комментарий", expanded=False):
                                     st.markdown(comment)
                 else:
-                    st.warning("Совпадений не найдено в умном поиске.")
+                    st.warning("🎄 Совпадений не найдено в умном поиске.")
 
                 exact_results = keyword_search(query, search_df)
                 if exact_results:
@@ -181,9 +185,9 @@ with tab1:
                     for phrase, topics, comment in exact_results:
                         with st.container():
                             st.markdown(
-                                f"""<div style="border: 1px solid #e0e0e0; border-radius: 12px; padding: 16px; margin-bottom: 12px; background-color: #f9f9f9; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
-                                    <div style="font-size: 18px; font-weight: 600; color: #333;">📌 {phrase}</div>
-                                    <div style="margin-top: 4px; font-size: 14px; color: #666;">🔖 Тематики: <strong>{', '.join(topics)}</strong></div>
+                                f"""<div style="border: 2px solid #4caf50; border-radius: 12px; padding: 16px; margin-bottom: 12px; background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%); box-shadow: 0 2px 6px rgba(76,175,80,0.1);">
+                                    <div style="font-size: 18px; font-weight: 600; color: #1b5e20;">🎯 {phrase}</div>
+                                    <div style="margin-top: 4px; font-size: 14px; color: #2e7d32;">🔖 Тематики: <strong>{', '.join(topics)}</strong></div>
                                 </div>""",
                                 unsafe_allow_html=True
                             )
@@ -191,15 +195,25 @@ with tab1:
                                 with st.expander("💬 Комментарий", expanded=False):
                                     st.markdown(comment)
                 else:
-                    st.info("Ничего не найдено в точном поиске.")
+                    st.info("❄️ Ничего не найдено в точном поиске.")
 
         except Exception as e:
-            st.error(f"Ошибка при обработке запроса: {e}")
+            st.error(f"🎄 Ошибка при обработке запроса: {e}")
 
 
 # ============= TAB 2: НЕ ИСПОЛЬЗУЕМ =============
 with tab2:
     st.markdown("### 🚫 Локалы, которые **не используем**")
+    
+    # Новогодний стиль для списка
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); 
+                padding: 20px; 
+                border-radius: 12px; 
+                border: 2px solid #ff6b6b;
+                margin-bottom: 20px;">
+    """, unsafe_allow_html=True)
+    
     unused_topics = [
         "Local_Balance_Transfer",
         "Local_Friends",
@@ -225,27 +239,44 @@ with tab2:
         "Новая карта (NewCard)",
         "Проблема с начислением кэшбэка (Local_Problem_CashBack)"
     ]
+    
     for topic in unused_topics:
-        st.markdown(f"- {topic}")
+        st.markdown(f"❄️ **{topic}**")
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ============= TAB 3: ДА/НЕТ =============
-def render_phrases_grid(phrases, cols=3, color="#e0f7fa"):
+def render_phrases_grid(phrases, cols=3, color="#e0f7fa", icon="🎯"):
     rows = [phrases[i:i+cols] for i in range(0, len(phrases), cols)]
     for row in rows:
         cols_streamlit = st.columns(cols)
         for col, phrase in zip(cols_streamlit, row):
             col.markdown(
                 f"""<div style="background-color:{color};
-                                padding:6px 10px;
+                                padding:8px 12px;
                                 border-radius:12px;
                                 display:inline-block;
                                 margin:4px;
-                                font-size:14px;">{phrase}</div>""",
+                                font-size:14px;
+                                border: 1px solid {color.replace('0.5', '0.8')};
+                                text-align: center;">
+                        {icon} {phrase}
+                </div>""",
                 unsafe_allow_html=True
             )
 
 with tab3:
     st.markdown("### ✅ Интерпретации 'ДА'")
+    
+    # Новогодний баннер для ДА
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
+                padding: 15px; 
+                border-radius: 12px; 
+                border: 2px solid #4caf50;
+                margin-bottom: 20px;">
+    """, unsafe_allow_html=True)
+    
     yes_phrases = [
         "Подсказать", "Помню", "Хорошо", "Да", "Ага", "Угу",
         "Да по этому вопросу", "Остались", "Можно", "Жги", "Валяй", "Готов",
@@ -253,12 +284,40 @@ with tab3:
         "Подскажите", "Расскажи", "Скажи", "Проверил", "Давал",
         "Я могу", "У меня вопрос есть", "Сказал", "Проконсультируйте", "Пробовала вносите в вашу базу"
     ]
-    render_phrases_grid(yes_phrases, cols=3, color="#d1f5d3")
+    render_phrases_grid(yes_phrases, cols=3, color="#d1f5d3", icon="✅")
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("---")
 
     st.markdown("### ❌ Интерпретации 'НЕТ'")
+    
+    # Новогодний баннер для НЕТ
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
+                padding: 15px; 
+                border-radius: 12px; 
+                border: 2px solid #f44336;
+                margin-bottom: 20px;">
+    """, unsafe_allow_html=True)
+    
     no_phrases = [
         "Не надо", "Не хочу", "Не готов", "Не помню", "Не пробовала", "Не интересно"
     ]
-    render_phrases_grid(no_phrases, cols=3, color="#f9d6d5")
+    render_phrases_grid(no_phrases, cols=3, color="#f9d6d5", icon="❌")
+    
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# Новогодний футер
+st.markdown("---")
+st.markdown(
+    """
+    <div style="text-align: center; color: #1a6e1a; margin-top: 30px;">
+        <p>🎄 <strong>С Наступающим Новым Годом!</strong> 🎄</p>
+        <div style="font-size: 0.9rem; color: #666;">
+            Пусть ваш код всегда будет чистым, а поиск — точным!
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
