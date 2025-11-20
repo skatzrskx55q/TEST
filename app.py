@@ -254,14 +254,12 @@ with tab1:
 
 # ============= TAB 2: НЕ ИСПОЛЬЗУЕМ =============
 with tab2:
-    st.markdown("### 🚫 Локалы, которые **не используем**")
-    
     st.markdown("""
-    <div style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); 
-                padding: 1px; 
-                border-radius: 12px; 
-                border: 2px solid #ff6b6b;
-                margin-bottom: 20px;">
+    <div class="christmas-card no" style="background: linear-gradient(135deg, #fff3e0 0%, #ffebee 100%); border: 2px solid #ff6b6b;">
+        <div class="card-snowflake" style="top: 10px; left: 10px; animation-delay: 0s;">❄</div>
+        <div class="card-snowflake" style="top: 25px; right: 20px; animation-delay: 1.2s;">❅</div>
+        <div class="card-snowflake" style="bottom: 15px; left: 25px; animation-delay: 2.4s;">❆</div>
+        <div class="card-header">🚫 Локалы, которые не используем</div>
     """, unsafe_allow_html=True)
     
     unused_topics = [
