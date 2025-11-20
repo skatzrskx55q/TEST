@@ -109,13 +109,6 @@ st.markdown("""
     .christmas-card.no .card-header {
         color: #c62828;
     }
-    
-    /* Простые статичные снежинки в контенте */
-    .static-snowflakes {
-        text-align: center;
-        margin: 10px 0;
-        opacity: 0.4;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -123,13 +116,6 @@ st.markdown("""
 st.markdown("""
 <div class="christmas-banner">
     🎄 С Наступающим Новым Годом! 🎄
-</div>
-""", unsafe_allow_html=True)
-
-# Статичные снежинки перед заголовком
-st.markdown("""
-<div class="static-snowflakes">
-    ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ • ❄ ❅ ❆ •
 </div>
 """, unsafe_allow_html=True)
 
@@ -148,6 +134,7 @@ with col2:
         <span class="snowflake">❅</span>
     </div>
     """, unsafe_allow_html=True)
+    
     # Нижний ряд иконок
     st.markdown("""
     <div class="snow-row">
@@ -159,13 +146,6 @@ with col2:
         <span class="snowflake">🎄</span>
     </div>
     """, unsafe_allow_html=True)
-
-# Статичные снежинки после заголовка
-st.markdown("""
-<div class="static-snowflakes">
-    • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄ • ❆ ❅ ❄
-</div>
-""", unsafe_allow_html=True)
 
 @st.cache_data
 def get_data():
