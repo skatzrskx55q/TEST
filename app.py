@@ -305,15 +305,13 @@ def render_phrases_grid(phrases, cols=3, color="#e0f7fa", icon="🎯"):
                 unsafe_allow_html=True
             )
 
-with tab3:
-    st.markdown("### ✅ Интерпретации 'ДА'")
-    
+with tab3:    
     st.markdown("""
     <div class="christmas-card">
         <div class="card-snowflake" style="top: 10px; left: 10px; animation-delay: 0s;">❄</div>
         <div class="card-snowflake" style="top: 15px; right: 15px; animation-delay: 1s;">❅</div>
         <div class="card-snowflake" style="bottom: 20px; left: 20px; animation-delay: 2s;">❆</div>
-        <div class="card-header">🎄 Положительные ответы 🎄</div>
+        <div class="card-header">🎄 Интерпретации 'ДА' 🎄</div>
     """, unsafe_allow_html=True)
     
     yes_phrases = [
@@ -329,14 +327,12 @@ with tab3:
 
     st.markdown("---")
 
-    st.markdown("### ❌ Интерпретации 'НЕТ'")
-    
     st.markdown("""
     <div class="christmas-card no">
         <div class="card-snowflake" style="top: 10px; left: 15px; animation-delay: 0.5s;">❄</div>
         <div class="card-snowflake" style="top: 25px; right: 10px; animation-delay: 1.5s;">❅</div>
         <div class="card-snowflake" style="bottom: 15px; right: 25px; animation-delay: 2.5s;">❆</div>
-        <div class="card-header">🎅 Отрицательные ответы 🎅</div>
+        <div class="card-header">🎅 Интерпретации 'НЕТ' 🎅</div>
     """, unsafe_allow_html=True)
     
     no_phrases = [
