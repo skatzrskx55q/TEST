@@ -268,15 +268,6 @@ def render_phrases_grid(phrases, cols=3, color="#e0f7fa", icon="🎯"):
 with tab3:
     st.markdown("### ✅ Интерпретации 'ДА'")
     
-    # Новогодний баннер для ДА
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%); 
-                padding: 15px; 
-                border-radius: 12px; 
-                border: 2px solid #4caf50;
-                margin-bottom: 20px;">
-    """, unsafe_allow_html=True)
-    
     yes_phrases = [
         "Подсказать", "Помню", "Хорошо", "Да", "Ага", "Угу",
         "Да по этому вопросу", "Остались", "Можно", "Жги", "Валяй", "Готов",
@@ -291,15 +282,6 @@ with tab3:
     st.markdown("---")
 
     st.markdown("### ❌ Интерпретации 'НЕТ'")
-    
-    # Новогодний баннер для НЕТ
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); 
-                padding: 15px; 
-                border-radius: 12px; 
-                border: 2px solid #f44336;
-                margin-bottom: 20px;">
-    """, unsafe_allow_html=True)
     
     no_phrases = [
         "Не надо", "Не хочу", "Не готов", "Не помню", "Не пробовала", "Не интересно"
