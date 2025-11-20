@@ -109,7 +109,82 @@ st.markdown("""
     .christmas-card.no .card-header {
         color: #c62828;
     }
+    
+    /* Анимированный снегопад на всей странице */
+    .snowfall {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .snowflake-fall {
+        position: absolute;
+        top: -50px;
+        color: #87CEEB;
+        font-size: 1em;
+        animation: snowfall linear infinite;
+        opacity: 0.7;
+    }
+    
+    @keyframes snowfall {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 0.7;
+        }
+        100% {
+            transform: translateY(100vh) translateX(20px) rotate(360deg);
+            opacity: 0.3;
+        }
+    }
+    
+    /* Чтобы контент был поверх снегопада */
+    .main .block-container {
+        position: relative;
+        z-index: 1;
+    }
 </style>
+""", unsafe_allow_html=True)
+
+# Анимированный снегопад
+st.markdown("""
+<div class="snowfall" id="snowfall"></div>
+
+<script>
+function createSnowfall() {
+    const container = document.getElementById('snowfall');
+    const snowflakes = ['❄', '•', '❅', '❆', '*'];
+    const count = 40;
+    
+    container.innerHTML = '';
+    
+    for (let i = 0; i < count; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake-fall';
+        snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+        
+        const left = Math.random() * 100;
+        const size = Math.random() * 1.2 + 0.8;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        const opacity = Math.random() * 0.5 + 0.3;
+        
+        snowflake.style.left = left + 'vw';
+        snowflake.style.fontSize = size + 'em';
+        snowflake.style.animationDuration = duration + 's';
+        snowflake.style.animationDelay = delay + 's';
+        snowflake.style.opacity = opacity;
+        
+        container.appendChild(snowflake);
+    }
+}
+
+createSnowfall();
+window.addEventListener('resize', createSnowfall);
+</script>
 """, unsafe_allow_html=True)
 
 # Затем баннер
@@ -134,6 +209,9 @@ with col2:
         <span class="snowflake">❅</span>
     </div>
     """, unsafe_allow_html=True)
+    
+    # Главный заголовок
+    st.markdown('<h1 class="main-header">🤖 Проверка фраз ФЛ</h1>', unsafe_allow_html=True)
     
     # Нижний ряд иконок
     st.markdown("""
@@ -347,6 +425,7 @@ st.markdown(
     <div style="text-align: center; color: #1a6e1a; margin-top: 30px;">
         <p>🎄 <strong>С Наступающим Новым Годом!</strong> 🎄</p>
         <div style="font-size: 0.9rem; color: #666;">
+            Пусть ваш код всегда будет чистым, а поиск — точным!
         </div>
     </div>
     """,
